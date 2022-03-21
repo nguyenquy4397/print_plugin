@@ -38,7 +38,7 @@ public class SwiftPrintPlugin: NSObject, FlutterPlugin {
           var inp :InputStream?
           var out :OutputStream?
         
-         Stream.getStreamsToHost(withName: ip, port: port, inputStream: &inp, outputStream: &out)
+          Stream.getStreamsToHost(withName: ip, port: port, inputStream: &inp, outputStream: &out)
           let outputStream = out!
           outputStream.open()
           

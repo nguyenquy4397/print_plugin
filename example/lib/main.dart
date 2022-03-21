@@ -60,8 +60,11 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: FloatingActionButton(
           onPressed: () async => PrintPlugin.sendBytes(
             bytes: await testTicket(),
-            ip: "172.29.4.213",
+            ip: "192.168.1.6",
             port: 9100,
+            partSize: 4,
+            timeDelay: 1000,
+            isUseNativeSocket: false,
           ),
         ),
       ),

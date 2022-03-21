@@ -1,10 +1,8 @@
 package com.example.print_plugin;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -28,7 +26,12 @@ public class PrintPlugin implements FlutterPlugin, MethodCallHandler {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("sendBytes")){
-      new CustomSocket(Objects.requireNonNull(call.argument("bytes")), call.argument("ip"), call.argument("port"));
+      ArrayList<Integer> bytes = Objects.requireNonNull(call.argument("bytes"));
+      String ip = call.argument("ip");
+      int port =  call.argument("port") != null ? call.argument("port") : 0;
+      int partSize =  call.argument("partSize") != null ? call.argument("partSize") : 0;
+      int timeDelay =  call.argument("timeDelay") != null ? call.argument("timeDelay") : 0;
+      new CustomSocket(bytes, ip, port, partSize, timeDelay);
     } else {
       result.notImplemented();
     }
